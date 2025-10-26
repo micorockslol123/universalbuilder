@@ -77,28 +77,6 @@ local UniversalBuilder = {} do
         end
     end)
 end)
-task.spawn(function()
-    local Lighting = game:GetService("Lighting")
-    local originalBrightness = Lighting.Brightness
-    local originalAmbient = Lighting.Ambient
-    local originalOutdoorAmbient = Lighting.OutdoorAmbient
-    local originalClockTime = Lighting.ClockTime
-
-    while task.wait(0.2) do
-        if Toggles.Fullbright and Toggles.Fullbright.Value then
-            Lighting.Brightness = 2
-            Lighting.ClockTime = 12
-            Lighting.Ambient = Color3.new(1, 1, 1)
-            Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-        else
-            -- Restore original lighting when toggle is turned off
-            Lighting.Brightness = originalBrightness
-            Lighting.ClockTime = originalClockTime
-            Lighting.Ambient = originalAmbient
-            Lighting.OutdoorAmbient = originalOutdoorAmbient
-        end
-    end
-end)
     end
 
     function UniversalBuilder:Build(tab)
@@ -121,7 +99,6 @@ end)
 
         PlayerSection:AddDivider()
 
-		PlayerSection:AddToggle('Fullbright', {Text = 'Full Bright', Default = false})
         PlayerSection:AddToggle('InfJump', {Text = 'Infinite Jump', Default = false}):AddKeyPicker('InfJumpKeybind', { Default = '', SyncToggleState = true, NoUI = false, Text = 'Infinite Jump'})
         PlayerSection:AddToggle('Noclip', {Text = 'Noclip', Default = false}):AddKeyPicker('NoclipKeybind', { Default = '', SyncToggleState = true, NoUI = false, Text = 'Noclip'})
 
